@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="goldBadge">#fecb2f</color>
+    <color name="silverBadge">#b4b8bc</color>
+    <color name="bronzeBadge">#d0d0a686</color>
 </resources>

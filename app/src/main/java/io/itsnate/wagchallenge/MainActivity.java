@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import io.itsnate.wagchallenge.ui.adapter.DemoAdapter;
+import java.util.ArrayList;
+
+import io.itsnate.wagchallenge.model.StackOverflowUser;
+import io.itsnate.wagchallenge.ui.adapter.UserViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,8 +26,11 @@ public class MainActivity extends AppCompatActivity {
         userLayoutManager = new LinearLayoutManager(this);
         userView.setLayoutManager(userLayoutManager);
 
-        userViewAdapter = new DemoAdapter(new String[] {"Hello", "Hola", "Ciao", "Guten tag"});
+        ArrayList<StackOverflowUser> users = new ArrayList();
+        users.add(new StackOverflowUser(new StackOverflowUser.BadgeCounts(0, 1, 5), "Jim", null));
+        users.add(new StackOverflowUser(new StackOverflowUser.BadgeCounts(5, 1, 5), "Bob", null));
+        users.add(new StackOverflowUser(new StackOverflowUser.BadgeCounts(10, 1, 7), "JimBob", null));
+        userViewAdapter = new UserViewAdapter(users);
         userView.setAdapter(userViewAdapter);
-
     }
 }
