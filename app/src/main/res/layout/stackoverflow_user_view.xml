@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="140dp"
     android:padding="20dp">
 
     <RelativeLayout
         android:id="@+id/gravatar_container"
-        android:layout_width="75dp"
-        android:layout_height="75dp">
+        android:layout_marginRight="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp">
 
         <ProgressBar
+            android:id="@+id/gravatar_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:indeterminate="true"
@@ -20,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="User avatar"
-            android:visibility="gone"
             />
     </RelativeLayout>
 
@@ -34,33 +35,37 @@
         android:layout_toRightOf="@id/gravatar_container"
         />
 
-    <TextView
-        android:id="@+id/gold_count"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/goldBadge"
-        android:layout_below="@+id/user_name"
-        android:layout_toRightOf="@id/gravatar_container"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/gravatar_container"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/gold_count"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/goldBadge"
+            />
 
-    <TextView
-        android:id="@+id/silver_count"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/silverBadge"
-        android:layout_below="@+id/user_name"
-        android:layout_toRightOf="@+id/gold_count"
-        />
+        <TextView
+            android:id="@+id/silver_count"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/silverBadge"
+            />
 
-    <TextView
-        android:id="@+id/bronze_count"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/bronzeBadge"
-        android:layout_below="@+id/user_name"
-        android:layout_toRightOf="@id/silver_count"
-        />
+        <TextView
+            android:id="@+id/bronze_count"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bronzeBadge"
+            />
+    </LinearLayout>
+
+
 </RelativeLayout>
