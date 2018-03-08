@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/user_name"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
@@ -44,7 +44,7 @@
         >
         <TextView
             android:id="@+id/gold_count"
-            android:padding="10dp"
+            android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/goldBadge"
@@ -52,7 +52,7 @@
 
         <TextView
             android:id="@+id/silver_count"
-            android:padding="10dp"
+            android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/silverBadge"
@@ -60,7 +60,7 @@
 
         <TextView
             android:id="@+id/bronze_count"
-            android:padding="10dp"
+            android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/bronzeBadge"
