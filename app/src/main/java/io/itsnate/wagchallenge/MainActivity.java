@@ -5,9 +5,19 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
-import io.itsnate.wagchallenge.model.StackOverflowUser;
+import org.json.JSONObject;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import io.itsnate.wagchallenge.model.StackOverflowUserFactory;
 import io.itsnate.wagchallenge.ui.adapter.UserViewAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,11 +36,27 @@ public class MainActivity extends AppCompatActivity {
         userLayoutManager = new LinearLayoutManager(this);
         userView.setLayoutManager(userLayoutManager);
 
-        ArrayList<StackOverflowUser> users = new ArrayList();
-        users.add(new StackOverflowUser(new StackOverflowUser.BadgeCounts(0, 1, 5), "Jim", null));
-        users.add(new StackOverflowUser(new StackOverflowUser.BadgeCounts(5, 1, 5), "Bob", null));
-        users.add(new StackOverflowUser(new StackOverflowUser.BadgeCounts(10, 1, 7), "JimBob", null));
-        userViewAdapter = new UserViewAdapter(users);
-        userView.setAdapter(userViewAdapter);
+        fetchUsers();
+    }
+
+    private void fetchUsers() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="https://api.stackexchange.com/2.2/users?site=stackoverflow";
+
+        JsonObjectRequest userRequest = new JsonObjectRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        userViewAdapter = new UserViewAdapter(StackOverflowUserFactory.fromJson(response));
+                        userView.setAdapter(userViewAdapter);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Logger.getLogger("Json Request").log(Level.INFO, "Request error: " + error.getMessage());
+                    }
+                });
+
+        queue.add(userRequest);
     }
 }
