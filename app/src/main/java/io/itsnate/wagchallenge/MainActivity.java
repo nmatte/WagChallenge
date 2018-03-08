@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Logger.getLogger("Json Request").log(Level.INFO, "Request error: " + error.getMessage());
+                        Logger.getLogger("Json Request").log(Level.WARNING, "Request error: " + error.getMessage());
                     }
                 });
 

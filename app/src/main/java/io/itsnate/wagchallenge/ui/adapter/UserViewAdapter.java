@@ -37,18 +37,8 @@ public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        TextView userNameView = holder.constraintLayout.findViewById(R.id.user_name);
-        TextView bronzeCount = holder.constraintLayout.findViewById(R.id.bronze_count);
-        TextView silverCount = holder.constraintLayout.findViewById(R.id.silver_count);
-        TextView goldCount = holder.constraintLayout.findViewById(R.id.gold_count);
-        final ProgressBar progressBar = holder.constraintLayout.findViewById(R.id.gravatar_progress);
-        ImageView gravatar = holder.constraintLayout.findViewById(R.id.gravatar);
         StackOverflowUser user = users.get(position);
-
-        userNameView.setText(user.getDisplayName());
-        bronzeCount.setText(user.getBadgeCounts().getBronze().toString());
-        silverCount.setText(user.getBadgeCounts().getSilver().toString());
-        goldCount.setText(user.getBadgeCounts().getGold().toString());
+        final ProgressBar progressBar = holder.constraintLayout.findViewById(R.id.gravatar_progress);
 
         Glide.with(context)
                 .load(user.getGravatarUrl())
@@ -64,8 +54,12 @@ public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.ViewHo
                         return false;
                     }
                 })
-                .into(gravatar);
+                .into(holder.gravatar);
 
+        holder.userNameView.setText(user.getDisplayName());
+        holder.bronzeCount.setText(user.getBadgeCounts().getBronze().toString());
+        holder.silverCount.setText(user.getBadgeCounts().getSilver().toString());
+        holder.goldCount.setText(user.getBadgeCounts().getGold().toString());
     }
 
     @Override
@@ -77,12 +71,22 @@ public class UserViewAdapter extends RecyclerView.Adapter<UserViewAdapter.ViewHo
         this.users = users;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public RelativeLayout constraintLayout;
+        RelativeLayout constraintLayout;
+        TextView userNameView;
+        TextView bronzeCount;
+        TextView silverCount;
+        TextView goldCount;
+        ImageView gravatar;
 
-        public ViewHolder(RelativeLayout constraintLayout) {
+        ViewHolder(RelativeLayout constraintLayout) {
             super(constraintLayout);
+            this.userNameView = constraintLayout.findViewById(R.id.user_name);
+            this.bronzeCount = constraintLayout.findViewById(R.id.bronze_count);
+            this.silverCount = constraintLayout.findViewById(R.id.silver_count);
+            this.goldCount = constraintLayout.findViewById(R.id.gold_count);
+            this.gravatar = constraintLayout.findViewById(R.id.gravatar);
             this.constraintLayout = constraintLayout;
         }
     }
