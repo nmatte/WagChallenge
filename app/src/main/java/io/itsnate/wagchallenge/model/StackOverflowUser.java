@@ -27,6 +27,14 @@ public class StackOverflowUser {
         this.displayName = displayName;
     }
 
+    public String getGravatarUrl() {
+        return gravatarUrl;
+    }
+
+    public void setGravatarUrl(String gravatarUrl) {
+        this.gravatarUrl = gravatarUrl;
+    }
+
     public static class BadgeCounts {
         Integer bronze;
         Integer silver;
