@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fetchUsers() {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://api.stackexchange.com/2.2/users?site=stackoverflow";
+        String url = "https://api.stackexchange.com/2.2/users?site=stackoverflow";
 
         JsonObjectRequest userRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
